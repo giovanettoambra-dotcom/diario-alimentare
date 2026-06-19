@@ -1,18 +1,19 @@
 {
   "name": "Diario Alimentare",
   "short_name": "Diario",
-  "start_url": "./index.html",
+  "start_url": "https://giovanettoambra-dotcom.github.io/diario-alimentare/",
+  "scope": "https://giovanettoambra-dotcom.github.io/diario-alimentare/",
   "display": "standalone",
   "background_color": "#eef2f7",
   "theme_color": "#1976d2",
   "icons": [
     {
-      "src": "Immagine-diario-alimentare.png",
+      "src": "https://giovanettoambra-dotcom.github.io/diario-alimentare/Immagine-diario-alimentare.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "Immagine-diario-alimentare.png",
+      "src": "https://giovanettoambra-dotcom.github.io/diario-alimentare/Immagine-diario-alimentare.png",
       "sizes": "512x512",
       "type": "image/png"
     }
