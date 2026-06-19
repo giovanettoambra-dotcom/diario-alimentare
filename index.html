@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Diario Alimentare</title>
 
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" href="Immagine-diario-alimentare.png">
-  <link rel="apple-touch-icon" href="Immagine-diario-alimentare.png">
-
   <meta name="theme-color" content="#1976d2">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Diario Alimentare">
+  <meta name="apple-mobile-web-app-title" content="Diario Alimentare">
+
+  <link rel="manifest" href="https://giovanettoambra-dotcom.github.io/diario-alimentare/manifest.json">
+  <link rel="icon" type="image/png" href="https://giovanettoambra-dotcom.github.io/diario-alimentare/Immagine-diario-alimentare.png">
+  <link rel="apple-touch-icon" href="https://giovanettoambra-dotcom.github.io/diario-alimentare/Immagine-diario-alimentare.png">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -48,7 +55,8 @@
       color: #444;
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
       border: 1px solid #d0d7de;
       border-radius: 10px;
@@ -59,6 +67,13 @@
     textarea {
       min-height: 90px;
       resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #4caf50;
+      box-shadow: 0 0 4px rgba(76,175,80,0.4);
     }
 
     button {
@@ -74,6 +89,10 @@
       cursor: pointer;
     }
 
+    button:hover {
+      background: #1565c0;
+    }
+
     #messaggio {
       margin-top: 18px;
       text-align: center;
@@ -84,6 +103,7 @@
 </head>
 
 <body>
+
 <div class="container">
 
   <h2>🍽️ Diario Alimentare</h2>
@@ -139,7 +159,8 @@
       note: document.getElementById("note").value
     };
 
-    document.getElementById("messaggio").innerHTML = "⏳ Salvataggio in corso...";
+    document.getElementById("messaggio").innerHTML =
+      "⏳ Salvataggio in corso...";
 
     fetch(WEB_APP_URL, {
       method: "POST",
@@ -150,10 +171,12 @@
       body: JSON.stringify(dati)
     })
     .then(() => {
-      document.getElementById("messaggio").innerHTML = "✅ Giornata salvata correttamente!";
+      document.getElementById("messaggio").innerHTML =
+        "✅ Giornata salvata correttamente!";
     })
     .catch(() => {
-      document.getElementById("messaggio").innerHTML = "❌ Errore durante il salvataggio.";
+      document.getElementById("messaggio").innerHTML =
+        "❌ Errore durante il salvataggio.";
     });
   }
 </script>
