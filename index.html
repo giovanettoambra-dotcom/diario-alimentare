@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>Diario Alimentare</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="Immagine-diario-alimentare.png">
+  <link rel="apple-touch-icon" href="Immagine-diario-alimentare.png">
+
+  <meta name="theme-color" content="#1976d2">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #eef2f7;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid #d0d7de;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #1976d2;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #messaggio {
+      margin-top: 18px;
+      text-align: center;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <h2>🍽️ Diario Alimentare</h2>
+
+  <label>📅 Giorno</label>
+  <input type="date" id="giorno">
+
+  <label>🍳 Colazione</label>
+  <textarea id="colazione"></textarea>
+
+  <label>🍎 Spuntino mattina</label>
+  <textarea id="spuntinoMattina"></textarea>
+
+  <label>🍝 Pranzo</label>
+  <textarea id="pranzo"></textarea>
+
+  <label>🍪 Spuntino pomeriggio</label>
+  <textarea id="spuntinoPomeriggio"></textarea>
+
+  <label>🥗 Cena</label>
+  <textarea id="cena"></textarea>
+
+  <label>💧 Acqua bevuta</label>
+  <input type="text" id="acqua" placeholder="Es. 1,5 L">
+
+  <label>🏃 Attività fisica</label>
+  <textarea id="attivita" placeholder="Es. yoga 30 minuti"></textarea>
+
+  <label>📝 Note e sensazioni</label>
+  <textarea id="note"></textarea>
+
+  <button onclick="salva()">SALVA GIORNATA</button>
+
+  <div id="messaggio"></div>
+
+</div>
+
+<script>
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzC-wE86N4QiqG9wsFdKz-Jn90oc7zcu7Bd1fezq-H9EWzsjhPaDjiCvbAx7goau1o/exec";
+
+  document.getElementById("giorno").valueAsDate = new Date();
+
+  function salva() {
+    const dati = {
+      giorno: document.getElementById("giorno").value,
+      colazione: document.getElementById("colazione").value,
+      spuntinoMattina: document.getElementById("spuntinoMattina").value,
+      pranzo: document.getElementById("pranzo").value,
+      spuntinoPomeriggio: document.getElementById("spuntinoPomeriggio").value,
+      cena: document.getElementById("cena").value,
+      acqua: document.getElementById("acqua").value,
+      attivita: document.getElementById("attivita").value,
+      note: document.getElementById("note").value
+    };
+
+    document.getElementById("messaggio").innerHTML = "⏳ Salvataggio in corso...";
+
+    fetch(WEB_APP_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: JSON.stringify(dati)
+    })
+    .then(() => {
+      document.getElementById("messaggio").innerHTML = "✅ Giornata salvata correttamente!";
+    })
+    .catch(() => {
+      document.getElementById("messaggio").innerHTML = "❌ Errore durante il salvataggio.";
+    });
+  }
+</script>
+
+</body>
+</html>
